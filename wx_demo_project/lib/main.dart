@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wx_demo_project/safe_area_page.dart';
 
 import 'animated_container_page.dart';
+import 'back_drop_filter_page.dart';
 import 'future_builder_page.dart';
 
 void main() => runApp(MyApp());
@@ -56,6 +57,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 navigateTo(FutureBuilderPage());
               },
               child: Text('FutureBuilderDemo'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                navigateTo(BackdropFilterPage());
+              },
+              child: Text('BackdropFilterPage'),
             ),
           ],
         ),
