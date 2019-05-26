@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:wx_demo_project/safe_area_page.dart';
 
+import 'HeroDetailPage.dart';
 import 'animated_container_page.dart';
 import 'back_drop_filter_page.dart';
 import 'future_builder_page.dart';
+import 'hero_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,11 +13,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        'SafeAreaDemo': (context) => SafeAreaDemo(),
+        'AnimatedContainerDemo': (context) => AnimatedContainerDemo(),
+        'FutureBuilderPage': (context) => FutureBuilderPage(),
+        'BackdropFilterPage': (context) => BackdropFilterPage(),
+        'HeroPage': (context) => HeroPage(),
+        'HeroDetailPage': (context) => HeroDetailPage(),
+      },
     );
   }
 }
@@ -42,27 +53,33 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             RaisedButton(
               onPressed: () {
-                navigateTo(SafeAreaDemo());
+                navigateTo('SafeAreaDemo');
               },
               child: Text('SafeAreaDemo'),
             ),
             RaisedButton(
               onPressed: () {
-                navigateTo(AnimatedContainerDemo());
+                navigateTo('AnimatedContainerDemo');
               },
               child: Text('AnimatedContainerDemo'),
             ),
             RaisedButton(
               onPressed: () {
-                navigateTo(FutureBuilderPage());
+                navigateTo('FutureBuilderDemo');
               },
               child: Text('FutureBuilderDemo'),
             ),
             RaisedButton(
               onPressed: () {
-                navigateTo(BackdropFilterPage());
+                navigateTo('BackdropFilterPage');
               },
               child: Text('BackdropFilterPage'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                navigateTo('HeroPage');
+              },
+              child: Text('HeroPage'),
             ),
           ],
         ),
@@ -70,9 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  navigateTo(Widget widget) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return widget;
-    }));
+  navigateTo(name) {
+    Navigator.of(context).pushNamed(name);
   }
 }

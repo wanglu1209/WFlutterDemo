@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   dio: ^2.1.0
   flutter_spinkit: ^3.1.0
+  common_utils: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +48,10 @@ flutter:
   - images/bg.png
   - images/bg.jpg
   - images/wanimal.png
+  - images/Zelda.png
+  - images/game1.jpg
+  - images/game2.png
+  - images/game3.jpg
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
