@@ -4,6 +4,7 @@ import 'package:wx_demo_project/safe_area_page.dart';
 import 'HeroDetailPage.dart';
 import 'animated_container_page.dart';
 import 'back_drop_filter_page.dart';
+import 'dismissible_page.dart';
 import 'future_builder_page.dart';
 import 'hero_page.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         'BackdropFilterPage': (context) => BackdropFilterPage(),
         'HeroPage': (context) => HeroPage(),
         'HeroDetailPage': (context) => HeroDetailPage(),
+        'DismissiblePage': (context) => DismissiblePage(),
       },
     );
   }
@@ -80,6 +82,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 navigateTo('HeroPage');
               },
               child: Text('HeroPage'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                navigateTo('DismissiblePage');
+              },
+              child: Text('DismissiblePage'),
             ),
           ],
         ),
