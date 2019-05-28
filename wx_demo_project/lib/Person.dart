@@ -1,9 +1,11 @@
 class Person {
   String name;
   int age;
+  String head;
 
 
-  Person();
+
+  Person({this.name, this.age, this.head});
 
   Person.fromJson(Map json) {
     this.name = json['name'];

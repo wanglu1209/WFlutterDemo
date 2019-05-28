@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wx_demo_project/safe_area_page.dart';
+import 'package:wx_demo_project/valuelistenablebuilder_page.dart';
 
 import 'HeroDetailPage.dart';
 import 'animated_container_page.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         'HeroPage': (context) => HeroPage(),
         'HeroDetailPage': (context) => HeroDetailPage(),
         'DismissiblePage': (context) => DismissiblePage(),
+        'ValueListenableBuildPage': (context) => ValueListenableBuildPage(),
       },
     );
   }
@@ -88,6 +90,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 navigateTo('DismissiblePage');
               },
               child: Text('DismissiblePage'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                navigateTo('ValueListenableBuildPage');
+              },
+              child: Text('ValueListenableBuildPage'),
             ),
           ],
         ),
