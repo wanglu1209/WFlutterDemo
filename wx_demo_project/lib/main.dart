@@ -6,6 +6,7 @@ import 'HeroDetailPage.dart';
 import 'animated_container_page.dart';
 import 'back_drop_filter_page.dart';
 import 'dismissible_page.dart';
+import 'draggable_page.dart';
 import 'future_builder_page.dart';
 import 'hero_page.dart';
 
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         'HeroDetailPage': (context) => HeroDetailPage(),
         'DismissiblePage': (context) => DismissiblePage(),
         'ValueListenableBuildPage': (context) => ValueListenableBuildPage(),
+        'DraggablePage': (context) => DraggablePage(),
       },
     );
   }
@@ -96,6 +98,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 navigateTo('ValueListenableBuildPage');
               },
               child: Text('ValueListenableBuildPage'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                navigateTo('DraggablePage');
+              },
+              child: Text('DraggablePage'),
             ),
           ],
         ),
