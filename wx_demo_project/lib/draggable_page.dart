@@ -32,7 +32,7 @@ class _DraggablePageState extends State<DraggablePage> {
                 _items2.add(data);
               });
             },
-          )
+          ),
         ],
       ),
     );

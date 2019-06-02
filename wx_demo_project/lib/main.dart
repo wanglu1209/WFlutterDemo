@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:wx_demo_project/safe_area_page.dart';
+import 'package:wx_demo_project/spacer_page.dart';
 import 'package:wx_demo_project/valuelistenablebuilder_page.dart';
 
 import 'HeroDetailPage.dart';
 import 'animated_container_page.dart';
+import 'animated_list_page.dart';
+import 'aspect_ratio_page.dart';
 import 'back_drop_filter_page.dart';
 import 'dismissible_page.dart';
 import 'draggable_page.dart';
@@ -32,6 +35,9 @@ class MyApp extends StatelessWidget {
         'DismissiblePage': (context) => DismissiblePage(),
         'ValueListenableBuildPage': (context) => ValueListenableBuildPage(),
         'DraggablePage': (context) => DraggablePage(),
+        'AspectRatioPage': (context) => AspectRatioPage(),
+        'SpacerPage': (context) => SpacerPage(),
+        'AnimatedListPage': (context) => AnimatedListPage(),
       },
     );
   }
@@ -104,6 +110,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 navigateTo('DraggablePage');
               },
               child: Text('DraggablePage'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                navigateTo('AspectRatioPage');
+              },
+              child: Text('AspectRatioPage'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                navigateTo('SpacerPage');
+              },
+              child: Text('SpacerPage'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                navigateTo('AnimatedListPage');
+              },
+              child: Text('AnimatedListPage'),
             ),
           ],
         ),
