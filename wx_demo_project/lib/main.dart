@@ -8,6 +8,7 @@ import 'animated_container_page.dart';
 import 'animated_list_page.dart';
 import 'aspect_ratio_page.dart';
 import 'back_drop_filter_page.dart';
+import 'wrap_page.dart';
 import 'dismissible_page.dart';
 import 'draggable_page.dart';
 import 'future_builder_page.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         'AspectRatioPage': (context) => AspectRatioPage(),
         'SpacerPage': (context) => SpacerPage(),
         'AnimatedListPage': (context) => AnimatedListPage(),
+        'WrapPage': (context) => WrapPage(),
       },
     );
   }
@@ -128,6 +130,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 navigateTo('AnimatedListPage');
               },
               child: Text('AnimatedListPage'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                navigateTo('WrapPage');
+              },
+              child: Text('WrapPage'),
             ),
           ],
         ),
