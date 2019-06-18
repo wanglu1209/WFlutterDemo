@@ -8,6 +8,7 @@ import 'animated_container_page.dart';
 import 'animated_list_page.dart';
 import 'aspect_ratio_page.dart';
 import 'back_drop_filter_page.dart';
+import 'expansion_panel_page.dart';
 import 'wrap_page.dart';
 import 'dismissible_page.dart';
 import 'draggable_page.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         'SpacerPage': (context) => SpacerPage(),
         'AnimatedListPage': (context) => AnimatedListPage(),
         'WrapPage': (context) => WrapPage(),
+        'ExpansionPanelPage': (context) => ExpansionPanelPage(),
       },
     );
   }
@@ -136,6 +138,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 navigateTo('WrapPage');
               },
               child: Text('WrapPage'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                navigateTo('ExpansionPanelPage');
+              },
+              child: Text('ExpansionPanelPage'),
             ),
           ],
         ),
