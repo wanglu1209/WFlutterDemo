@@ -17,15 +17,25 @@ class _ReorderableListViewPageState extends State<ReorderableListViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ReorderableListViewPage'),
-      ),
-      body: ReorderableListView(
-          header: Container(
-            height: 50,
-          ),
-          children: _data
-              .map((s) => Dismissible(
+        appBar: AppBar(
+          title: Text('ReorderableListViewPage'),
+        ),
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              '哈哈哈哈哈哈哈',
+              style: TextStyle(fontSize: 50),
+            ),
+            Container(
+              height: 500,
+              child:
+              ReorderableListView(
+                  header: Container(
+                    height: 50,
+                  ),
+                  children: _data
+                      .map((s) => Dismissible(
                     key: Key(s.toString()),
                     child: Card(
                       color: s,
@@ -36,17 +46,19 @@ class _ReorderableListViewPageState extends State<ReorderableListViewPage> {
                       ),
                     ),
                   ))
-              .toList(),
-          onReorder: (int oldIndex, int newIndex) {
-            setState(() {
-              if(oldIndex < newIndex) {
-                newIndex -= 1;
-              }
+                      .toList(),
+                  onReorder: (int oldIndex, int newIndex) {
+                    setState(() {
+                      if (oldIndex < newIndex) {
+                        newIndex -= 1;
+                      }
 
-              var temp = _data.removeAt(oldIndex);
-              _data.insert(newIndex, temp);
-            });
-          }),
-    );
+                      var temp = _data.removeAt(oldIndex);
+                      _data.insert(newIndex, temp);
+                    });
+                  }),
+            )
+          ],
+        ));
   }
 }

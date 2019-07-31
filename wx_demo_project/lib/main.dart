@@ -9,6 +9,7 @@ import 'HeroDetailPage.dart';
 import 'animated_container_page.dart';
 import 'animated_icon_page.dart';
 import 'animated_list_page.dart';
+import 'animated_switcher_page.dart';
 import 'aspect_ratio_page.dart';
 import 'back_drop_filter_page.dart';
 import 'banner_page.dart';
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         'StepperPage': (context) => StepperPage(),
         'ReorderableListViewPage': (context) => ReorderableListViewPage(),
         'BannerPage': (context) => BannerPage(),
+        'AnimatedSwitcherPage': (context) => AnimatedSwitcherPage(),
       },
     );
   }
@@ -185,6 +187,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   navigateTo('BannerPage');
                 },
                 child: Text('BannerPage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('AnimatedSwitcherPage');
+                },
+                child: Text('AnimatedSwitcherPage'),
               ),
             ],
           ),),
