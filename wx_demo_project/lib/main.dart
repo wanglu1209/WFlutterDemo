@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wx_demo_project/popup_menu_button_page.dart';
 import 'package:wx_demo_project/reorderable_list_view_page.dart';
 import 'package:wx_demo_project/safe_area_page.dart';
 import 'package:wx_demo_project/spacer_page.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         'ReorderableListViewPage': (context) => ReorderableListViewPage(),
         'BannerPage': (context) => BannerPage(),
         'AnimatedSwitcherPage': (context) => AnimatedSwitcherPage(),
+        'PopupMenuButtonPage': (context) => PopupMenuButtonPage(),
       },
     );
   }
@@ -193,6 +195,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   navigateTo('AnimatedSwitcherPage');
                 },
                 child: Text('AnimatedSwitcherPage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('PopupMenuButtonPage');
+                },
+                child: Text('PopupMenuButtonPage'),
               ),
             ],
           ),),
