@@ -15,31 +15,34 @@ class _PopupMenuButtonPageState extends State<PopupMenuButtonPage> {
       appBar: AppBar(
         title: Text('PopupMenuButtonPage'),
         actions: <Widget>[
-          PopupMenuButton<WhyFarther>(
-            onSelected: (WhyFarther result) {
-              setState(() {
-                _selection = result;
-              });
-            },
-            icon: Icon(Icons.more_vert),
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
-              const PopupMenuItem<WhyFarther>(
-                value: WhyFarther.harder,
-                child: Text('Working a lot harder'),
-              ),
-              const PopupMenuItem<WhyFarther>(
-                value: WhyFarther.smarter,
-                child: Text('Being a lot smarter'),
-              ),
-              const PopupMenuItem<WhyFarther>(
-                value: WhyFarther.selfStarter,
-                child: Text('Being a self-starter'),
-              ),
-              const PopupMenuItem<WhyFarther>(
-                value: WhyFarther.tradingCharter,
-                child: Text('Placed in charge of trading charter'),
-              ),
-            ],
+          Theme(
+            data: ThemeData(cardColor: Colors.red),
+            child: PopupMenuButton<WhyFarther>(
+              onSelected: (WhyFarther result) {
+                setState(() {
+                  _selection = result;
+                });
+              },
+              icon: Icon(Icons.more_vert),
+              itemBuilder: (BuildContext context) => <PopupMenuEntry<WhyFarther>>[
+                const PopupMenuItem<WhyFarther>(
+                  value: WhyFarther.harder,
+                  child: Text('Working a lot harder'),
+                ),
+                const PopupMenuItem<WhyFarther>(
+                  value: WhyFarther.smarter,
+                  child: Text('Being a lot smarter'),
+                ),
+                const PopupMenuItem<WhyFarther>(
+                  value: WhyFarther.selfStarter,
+                  child: Text('Being a self-starter'),
+                ),
+                const PopupMenuItem<WhyFarther>(
+                  value: WhyFarther.tradingCharter,
+                  child: Text('Placed in charge of trading charter'),
+                ),
+              ],
+            ),
           ),
         ],
       ),

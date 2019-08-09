@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:wx_demo_project/popup_menu_button_page.dart';
+import 'package:wx_demo_project/popup_route_page.dart';
 import 'package:wx_demo_project/reorderable_list_view_page.dart';
 import 'package:wx_demo_project/safe_area_page.dart';
 import 'package:wx_demo_project/spacer_page.dart';
 import 'package:wx_demo_project/stepper_page.dart';
+import 'package:wx_demo_project/test_page.dart';
 import 'package:wx_demo_project/valuelistenablebuilder_page.dart';
 
 import 'HeroDetailPage.dart';
@@ -27,6 +29,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -56,6 +59,8 @@ class MyApp extends StatelessWidget {
         'BannerPage': (context) => BannerPage(),
         'AnimatedSwitcherPage': (context) => AnimatedSwitcherPage(),
         'PopupMenuButtonPage': (context) => PopupMenuButtonPage(),
+        'PopupRoutePage': (context) => PopupRoutePage(),
+        'TestPage': (context) => TestPage(),
       },
     );
   }
@@ -201,6 +206,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   navigateTo('PopupMenuButtonPage');
                 },
                 child: Text('PopupMenuButtonPage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('PopupRoutePage');
+                },
+                child: Text('PopupRoutePage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('TestPage');
+                },
+                child: Text('TestPage'),
               ),
             ],
           ),),
