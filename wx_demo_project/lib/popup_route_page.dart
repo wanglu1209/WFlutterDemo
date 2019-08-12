@@ -28,10 +28,11 @@ class _PopupRoutePageState extends State<PopupRoutePage> {
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           itemBuilder: (context, index) {
             return Container(
+              padding: EdgeInsets.symmetric(vertical: 5),
               alignment:
                   index % 2 == 0 ? Alignment.centerLeft : Alignment.centerRight,
               child: Container(
-                width: 180,
+                width: 350,
                 child: WPopupMenu(
                   onValueChanged: (int value) {
                     Scaffold.of(context).showSnackBar(SnackBar(content: Text(actions[value]), duration: Duration(milliseconds: 500),));

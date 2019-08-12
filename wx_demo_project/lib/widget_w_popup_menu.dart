@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:wx_demo_project/triangle_painter.dart';
+
+const double _kMenuScreenPadding = 8.0;
+const double _kPageWidth = 250;
 
 class WPopupMenu extends StatefulWidget {
   WPopupMenu({
@@ -30,7 +34,6 @@ class _WPopupMenuState extends State<WPopupMenu> {
       key: _key,
       child: widget.child,
       onTap: () {
-        print(_key.currentContext == null);
         if (widget.pressType == PressType.singleClick) {
           Navigator.push(
                   context,
@@ -42,7 +45,6 @@ class _WPopupMenuState extends State<WPopupMenu> {
         }
       },
       onLongPress: () {
-        print(_key.currentContext == null);
         if (widget.pressType == PressType.longPress) {
           Navigator.push(
                   context,
@@ -120,9 +122,10 @@ class _MenuPopWidget extends StatefulWidget {
 
 class __MenuPopWidgetState extends State<_MenuPopWidget> {
   int _curPage = 0;
-  final double _pageWidth = 300;
   final double _arrowWidth = 40;
   final double _separatorWidth = 1;
+  final double _pageHeight = 42;
+  final double _triangleHeight = 10;
 
   RenderBox button;
   RenderBox overlay;
@@ -167,7 +170,7 @@ class __MenuPopWidgetState extends State<_MenuPopWidget> {
       }
     }
 
-    double _curPageWidth = _pageWidth +
+    double _curPageWidth = _kPageWidth +
         (_curPageChildCount - 1 + _curArrowCount) * _separatorWidth +
         _curArrowWidth;
 
@@ -179,86 +182,129 @@ class __MenuPopWidgetState extends State<_MenuPopWidget> {
       removeRight: true,
       child: Builder(
         builder: (BuildContext context) {
+          var isInverted = (position.top +
+              (MediaQuery.of(context).size.height - position.top - position.bottom) / 2.0 -
+              (_pageHeight + _triangleHeight)) < (_pageHeight + _triangleHeight) * 2;
           return CustomSingleChildLayout(
             // 这里计算偏移量
-            delegate: _PopupMenuRouteLayout(position, widget._height,
-                Directionality.of(widget.btnKey.currentContext), widget._width),
+            delegate: _PopupMenuRouteLayout(
+                position,
+                _pageHeight + _triangleHeight,
+                Directionality.of(widget.btnKey.currentContext),
+                widget._width),
             child: SizedBox(
-              height: 42,
+              height: _pageHeight + _triangleHeight,
               width: _curPageWidth,
               child: Material(
                 color: Colors.transparent,
-                child: Stack(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      child: Container(
-                        color: Colors.black,
+
+                    isInverted ? CustomPaint(
+                      size: Size(_curPageWidth, _triangleHeight),
+                      painter: TrianglePainter(
+                          color: Colors.black,
+                          position: position,
+                          isInverted: true,
+                          size: button.size),
+                    ): Container(),
+                    Expanded(
+                      child: Stack(
+                        children: <Widget>[
+                          ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            child: Container(
+                              color: Colors.black,
+                              height: _pageHeight,
+                            ),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              // 左箭头：判断是否是第一页，如果是第一页则不显示
+                              _curPage == 0
+                                  ? Container(
+                                      height: _pageHeight,
+                                    )
+                                  : InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          _curPage--;
+                                        });
+                                      },
+                                      child: Container(
+                                        width: _arrowWidth,
+                                        height: _pageHeight,
+                                        child: Image.asset(
+                                          'images/left_white.png',
+                                          fit: BoxFit.none,
+                                        ),
+                                      ),
+                                    ),
+                              // 左箭头：判断是否是第一页，如果是第一页则不显示
+                              _curPage == 0
+                                  ? Container(
+                                      height: _pageHeight,
+                                    )
+                                  : Container(
+                                      width: 1,
+                                      height: _pageHeight,
+                                      color: Colors.grey,
+                                    ),
+
+                              // 中间是ListView
+                              _buildList(_curPageChildCount, _curPageWidth,
+                                  _curArrowWidth, _curArrowCount),
+
+                              // 右箭头：判断是否有箭头，如果有就显示，没有就不显示
+                              _curArrowCount > 0
+                                  ? Container(
+                                      width: 1,
+                                      color: Colors.grey,
+                                      height: _pageHeight,
+                                    )
+                                  : Container(
+                                      height: _pageHeight,
+                                    ),
+                              _curArrowCount > 0
+                                  ? InkWell(
+                                      onTap: () {
+                                        if ((_curPage + 1) *
+                                                widget._pageMaxChildCount <
+                                            widget.actions.length)
+                                          setState(() {
+                                            _curPage++;
+                                          });
+                                      },
+                                      child: Container(
+                                        width: _arrowWidth,
+                                        height: _pageHeight,
+                                        child: Image.asset(
+                                          (_curPage + 1) *
+                                                      widget
+                                                          ._pageMaxChildCount >=
+                                                  widget.actions.length
+                                              ? 'images/right_gray.png'
+                                              : 'images/right_white.png',
+                                          fit: BoxFit.none,
+                                        ),
+                                      ),
+                                    )
+                                  : Container(
+                                      height: _pageHeight,
+                                    ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        // 左箭头：判断是否是第一页，如果是第一页则不显示
-                        _curPage == 0
-                            ? Container()
-                            : InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    _curPage--;
-                                  });
-                                },
-                                child: Container(
-                                  width: _arrowWidth,
-                                  child: Image.asset(
-                                    'images/left_white.png',
-                                    fit: BoxFit.none,
-                                  ),
-                                ),
-                              ),
-                        // 左箭头：判断是否是第一页，如果是第一页则不显示
-                        _curPage == 0
-                            ? Container()
-                            : Container(
-                                width: 1,
-                                color: Colors.grey,
-                              ),
-
-                        // 中间是ListView
-                        _buildList(_curPageChildCount, _curPageWidth,
-                            _curArrowWidth, _curArrowCount),
-
-                        // 右箭头：判断是否有箭头，如果有就显示，没有就不显示
-                        _curArrowCount > 0
-                            ? Container(
-                                width: 1,
-                                color: Colors.grey,
-                              )
-                            : Container(),
-                        _curArrowCount > 0
-                            ? InkWell(
-                                onTap: () {
-                                  if ((_curPage + 1) *
-                                          widget._pageMaxChildCount <
-                                      widget.actions.length)
-                                    setState(() {
-                                      _curPage++;
-                                    });
-                                },
-                                child: Container(
-                                  width: _arrowWidth,
-                                  child: Image.asset(
-                                    (_curPage + 1) *
-                                                widget._pageMaxChildCount >=
-                                            widget.actions.length
-                                        ? 'images/right_gray.png'
-                                        : 'images/right_white.png',
-                                    fit: BoxFit.none,
-                                  ),
-                                ),
-                              )
-                            : Container(),
-                      ],
+                    isInverted ?  Container() : CustomPaint(
+                      size: Size(_curPageWidth, _triangleHeight),
+                      painter: TrianglePainter(
+                          color: Colors.black,
+                          position: position,
+                          size: button.size),
                     ),
                   ],
                 ),
@@ -289,6 +335,7 @@ class __MenuPopWidgetState extends State<_MenuPopWidget> {
                     (_curPageChildCount - 1 + _curArrowCount) *
                         _separatorWidth) /
                 _curPageChildCount,
+            height: _pageHeight,
             child: Center(
               child: Text(
                 widget.actions[_curPage * widget._pageMaxChildCount + index],
@@ -301,14 +348,13 @@ class __MenuPopWidgetState extends State<_MenuPopWidget> {
       separatorBuilder: (BuildContext context, int index) {
         return Container(
           width: 1,
+          height: _pageHeight,
           color: Colors.grey,
         );
       },
     );
   }
 }
-
-const double _kMenuScreenPadding = 8.0;
 
 // Positioning of the menu on the screen.
 class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
@@ -356,6 +402,7 @@ class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
           selectedItemOffset;
     }
 
+
     // Find the ideal horizontal position.
     double x;
     if (position.left > position.right) {
@@ -364,20 +411,14 @@ class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
       x = position.left + width - childSize.width;
     } else if (position.left < position.right) {
       // Menu button is closer to the left edge, so grow to the right, aligned to the left edge.
-      x = position.left;
+      if (width > childSize.width) {
+        x = position.left + (childSize.width - _kPageWidth) / 2;
+      } else
+        x = position.left;
     } else {
-      // Menu button is equidistant from both edges, so grow in reading direction.
-      assert(textDirection != null);
-      switch (textDirection) {
-        case TextDirection.rtl:
-          x = size.width - position.right - childSize.width;
-          break;
-        case TextDirection.ltr:
-          x = position.left;
-          break;
-      }
-    }
+      x = position.right - width / 2 - childSize.width / 2;
 
+    }
     // Avoid going outside an area defined as the rectangle 8.0 pixels from the
     // edge of the screen in every direction.
     if (x < _kMenuScreenPadding)
@@ -387,7 +428,10 @@ class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
     if (y < _kMenuScreenPadding)
       y = _kMenuScreenPadding;
     else if (y + childSize.height > size.height - _kMenuScreenPadding)
-      y = size.height - childSize.height - _kMenuScreenPadding;
+      y = size.height - childSize.height;
+    else if (y < childSize.height * 2) {
+      y = position.top + childSize.height;
+    }
     return Offset(x, y);
   }
 
