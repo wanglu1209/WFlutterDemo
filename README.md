@@ -33,6 +33,7 @@
 - [Flutter | 超实用简单菜单弹出框 PopupMenuButton](https://github.com/wanglu1209/WFlutterDemo/blob/master/wx_demo_project/lib/popup_menu_button_page.dart)
 - [Flutter | 一个关于背景颜色引发的打脸惨案](https://mp.weixin.qq.com/s/hHLZvNrKgI_WaAa7XoN7Hg)
 - [Flutter | 可能是目前最好用的仿微信聊天长按弹出框 WPopupMenu](https://github.com/wanglu1209/WFlutterDemo/blob/master/wx_demo_project/lib/widget_w_popup_menu.dart)
+- [Flutter | 思路解析 WPopupMenu 仿微信聊天长按弹出菜单](https://mp.weixin.qq.com/s/BlaPVHr0nLhSxmiiL6yHWQ)
 
 目前加群可以扫描二维码，也可以添加我个人微信：17610912320 注明：进群
 
