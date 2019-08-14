@@ -11,6 +11,7 @@ class WPopupMenu extends StatefulWidget {
     @required this.child,
     this.pressType = PressType.longPress,
     this.pageMaxChildCount = 5,
+    this.backgroundColor = Colors.black
   })  : assert(onValueChanged != null),
         assert(actions != null && actions.length > 0),
         assert(child != null);
@@ -20,6 +21,7 @@ class WPopupMenu extends StatefulWidget {
   final Widget child;
   final PressType pressType; // 点击方式 长按 还是单击
   final int pageMaxChildCount;
+  final Color backgroundColor;
 
   @override
   _WPopupMenuState createState() => _WPopupMenuState();
@@ -38,7 +40,7 @@ class _WPopupMenuState extends State<WPopupMenu> {
           Navigator.push(
                   context,
                   _PopupMenuRoute(
-                      _key, widget.actions, widget.pageMaxChildCount))
+                      _key, widget.actions, widget.pageMaxChildCount, widget.backgroundColor))
               .then((index) {
             widget.onValueChanged(index);
           });
@@ -49,7 +51,7 @@ class _WPopupMenuState extends State<WPopupMenu> {
           Navigator.push(
                   context,
                   _PopupMenuRoute(
-                      _key, widget.actions, widget.pageMaxChildCount))
+                      _key, widget.actions, widget.pageMaxChildCount, widget.backgroundColor))
               .then((index) {
             widget.onValueChanged(index);
           });
@@ -72,8 +74,9 @@ class _PopupMenuRoute extends PopupRoute {
   double _width;
   final List<String> actions;
   final int _pageMaxChildCount;
+  final Color backgroundColor;
 
-  _PopupMenuRoute(this.btnKey, this.actions, this._pageMaxChildCount) {
+  _PopupMenuRoute(this.btnKey, this.actions, this._pageMaxChildCount, this.backgroundColor) {
     _height = btnKey.currentContext.size.height;
     _width = btnKey.currentContext.size.width;
   }
@@ -99,7 +102,7 @@ class _PopupMenuRoute extends PopupRoute {
   @override
   Widget buildPage(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation) {
-    return _MenuPopWidget(btnKey, _height, _width, actions, _pageMaxChildCount);
+    return _MenuPopWidget(btnKey, _height, _width, actions, _pageMaxChildCount, backgroundColor);
   }
 
   @override
@@ -112,9 +115,10 @@ class _MenuPopWidget extends StatefulWidget {
   final double _width;
   final List<String> actions;
   final int _pageMaxChildCount;
+  final Color backgroundColor;
 
   _MenuPopWidget(this.btnKey, this._height, this._width, this.actions,
-      this._pageMaxChildCount);
+      this._pageMaxChildCount, this.backgroundColor);
 
   @override
   __MenuPopWidgetState createState() => __MenuPopWidgetState();
@@ -204,7 +208,7 @@ class __MenuPopWidgetState extends State<_MenuPopWidget> {
                     isInverted ? CustomPaint(
                       size: Size(_curPageWidth, _triangleHeight),
                       painter: TrianglePainter(
-                          color: Colors.black,
+                          color: widget.backgroundColor,
                           position: position,
                           isInverted: true,
                           size: button.size),
@@ -215,7 +219,7 @@ class __MenuPopWidgetState extends State<_MenuPopWidget> {
                           ClipRRect(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                             child: Container(
-                              color: Colors.black,
+                              color: widget.backgroundColor,
                               height: _pageHeight,
                             ),
                           ),
@@ -302,7 +306,7 @@ class __MenuPopWidgetState extends State<_MenuPopWidget> {
                     isInverted ?  Container() : CustomPaint(
                       size: Size(_curPageWidth, _triangleHeight),
                       painter: TrianglePainter(
-                          color: Colors.black,
+                          color: widget.backgroundColor,
                           position: position,
                           size: button.size),
                     ),

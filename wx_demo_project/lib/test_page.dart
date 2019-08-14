@@ -5,29 +5,44 @@ class TestPage extends StatefulWidget {
   _TestPageState createState() => _TestPageState();
 }
 
+double offset = 0;
+
 class _TestPageState extends State<TestPage> {
-  TextEditingController _controller = TextEditingController(text: '123');
+  PageController _controller = PageController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller.addListener((){
+//      print(_controller.offset);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text('TestPage'),
         ),
-        body: Container(
-          height: 50,
-          child: Row(
-            children: <Widget>[
-              Expanded(flex: 1,child: Padding(
-                padding: const EdgeInsets.only(right:18.0),
-                child: TextFormField(
-                  controller: _controller,
-                ),
-              )),
-              RaisedButton(onPressed: () {
-                Navigator.of(context).pop();
-              })
-            ],
-          ),
+        body: PageView(
+          controller: _controller,
+          physics: CustomScrollableScrollPhysics(),
+          children: ['A', 'B', 'C'].map((s) => Center(child: Text(s),)).toList(),
         ));
   }
+}
+
+class CustomScrollableScrollPhysics extends ScrollPhysics {
+  /// Creates scroll physics that does not let the user scroll.
+  const CustomScrollableScrollPhysics({ ScrollPhysics parent }) : super(parent: parent);
+
+  @override
+  NeverScrollableScrollPhysics applyTo(ScrollPhysics ancestor) {
+    return NeverScrollableScrollPhysics(parent: buildParent(ancestor));
+  }
+
+  @override
+  bool shouldAcceptUserOffset(ScrollMetrics position) => true;
+
+  @override
+  bool get allowImplicitScrolling => false;
 }
