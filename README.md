@@ -2,6 +2,8 @@
 
 公众号 「Flutter 笔记」文章 Demo
 
+**找「仿微信聊天弹出框」的同学，可以去 [fluttercandies/w_popup_menu](https://github.com/fluttercandies/w_popup_menu) 里寻找。现在可以通过pub 来添加依赖了，具体可以查看 [pub: w_popup_menu](https://pub.dev/packages/w_popup_menu)**
+
 目前更新的文章有：
 
 - [Flutter SafeArea - 异形屏适配利器](https://github.com/wanglu1209/WFlutterDemo/blob/master/wx_demo_project/lib/safe_area_page.dart)
