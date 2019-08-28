@@ -4,6 +4,7 @@ import 'package:wx_demo_project/popup_route_page.dart';
 import 'package:wx_demo_project/reorderable_list_view_page.dart';
 import 'package:wx_demo_project/safe_area_page.dart';
 import 'package:wx_demo_project/spacer_page.dart';
+import 'package:wx_demo_project/spread_page.dart';
 import 'package:wx_demo_project/stepper_page.dart';
 import 'package:wx_demo_project/test_page.dart';
 import 'package:wx_demo_project/valuelistenablebuilder_page.dart';
@@ -13,11 +14,13 @@ import 'animated_container_page.dart';
 import 'animated_icon_page.dart';
 import 'animated_list_page.dart';
 import 'animated_switcher_page.dart';
+import 'animation_page.dart';
 import 'aspect_ratio_page.dart';
 import 'back_drop_filter_page.dart';
 import 'banner_page.dart';
 import 'drop_down_button_page.dart';
 import 'expansion_panel_page.dart';
+import 'long_press_menu_page.dart';
 import 'wrap_page.dart';
 import 'dismissible_page.dart';
 import 'draggable_page.dart';
@@ -61,6 +64,9 @@ class MyApp extends StatelessWidget {
         'PopupMenuButtonPage': (context) => PopupMenuButtonPage(),
         'PopupRoutePage': (context) => PopupRoutePage(),
         'TestPage': (context) => TestPage(),
+        'LongPressMenuPage': (context) => LongPressMenuPage(),
+        'AnimationPage': (context) => AnimationPage(),
+        'SpreadPage': (context) => SpreadPage(),
       },
     );
   }
@@ -218,6 +224,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   navigateTo('TestPage');
                 },
                 child: Text('TestPage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('LongPressMenuPage');
+                },
+                child: Text('LongPressMenuPage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('AnimationPage');
+                },
+                child: Text('AnimationPage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('SpreadPage');
+                },
+                child: Text('SpreadPage'),
               ),
             ],
           ),),
