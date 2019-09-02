@@ -303,7 +303,8 @@ class __MenuPopWidgetState extends State<_MenuPopWidget> {
                 widget.menuHeight + _triangleHeight,
                 Directionality.of(widget.btnContext),
                 widget._width,
-                widget.menuWidth),
+                widget.menuWidth,
+                widget._height),
             child: SizedBox(
               height: widget.menuHeight + _triangleHeight,
               width: _curPageWidth,
@@ -316,10 +317,12 @@ class __MenuPopWidgetState extends State<_MenuPopWidget> {
                         ? CustomPaint(
                             size: Size(_curPageWidth, _triangleHeight),
                             painter: TrianglePainter(
-                                color: widget.backgroundColor,
-                                position: position,
-                                isInverted: true,
-                                size: button.size),
+                              color: widget.backgroundColor,
+                              position: position,
+                              isInverted: true,
+                              size: button.size,
+                              screenWidth: MediaQuery.of(context).size.width,
+                            ),
                           )
                         : Container(),
                     Expanded(
@@ -419,7 +422,8 @@ class __MenuPopWidgetState extends State<_MenuPopWidget> {
                             painter: TrianglePainter(
                                 color: widget.backgroundColor,
                                 position: position,
-                                size: button.size),
+                                size: button.size,
+                              screenWidth: MediaQuery.of(context).size.width,),
                           ),
                   ],
                 ),
@@ -474,7 +478,7 @@ class __MenuPopWidgetState extends State<_MenuPopWidget> {
 // Positioning of the menu on the screen.
 class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
   _PopupMenuRouteLayout(this.position, this.selectedItemOffset,
-      this.textDirection, this.width, this.menuWidth);
+      this.textDirection, this.width, this.menuWidth, this.height);
 
   // Rectangle of underlying button, relative to the overlay's dimensions.
   final RelativeRect position;
@@ -488,6 +492,7 @@ class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
   final TextDirection textDirection;
 
   final double width;
+  final double height;
   final double menuWidth;
 
   // We put the child wherever position specifies, so long as it will fit within
@@ -527,12 +532,12 @@ class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
     } else {
       // 如果靠右
       if (position.left > size.width - (position.left + width)) {
-        if (size.width - (position.left + width) + width > childSize.width) {
+        if (size.width - (position.left + width) > childSize.width / 2 + _kMenuScreenPadding) {
           x = position.left - (childSize.width - width) / 2;
         } else
           x = position.left + width - childSize.width;
       } else if (position.left < size.width - (position.left + width)) {
-        if (position.left + width > childSize.width) {
+        if (position.left > childSize.width / 2 + _kMenuScreenPadding) {
           x = position.left - (childSize.width - width) / 2;
         } else
           x = position.left;
@@ -544,7 +549,7 @@ class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
       else if (y + childSize.height > size.height - _kMenuScreenPadding)
         y = size.height - childSize.height;
       else if (y < childSize.height * 2) {
-        y = position.top + childSize.height;
+        y = position.top + height;
       }
     }
     return Offset(x, y);

@@ -20,6 +20,7 @@ import 'back_drop_filter_page.dart';
 import 'banner_page.dart';
 import 'drop_down_button_page.dart';
 import 'expansion_panel_page.dart';
+import 'login_page.dart';
 import 'long_press_menu_page.dart';
 import 'wrap_page.dart';
 import 'dismissible_page.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
         'LongPressMenuPage': (context) => LongPressMenuPage(),
         'AnimationPage': (context) => AnimationPage(),
         'SpreadPage': (context) => SpreadPage(),
+        'LoginPage': (context) => LoginPage(),
       },
     );
   }
@@ -242,6 +244,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   navigateTo('SpreadPage');
                 },
                 child: Text('SpreadPage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('LoginPage');
+                },
+                child: Text('LoginPage'),
               ),
             ],
           ),),
