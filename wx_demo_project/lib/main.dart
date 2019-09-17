@@ -23,6 +23,7 @@ import 'drop_down_button_page.dart';
 import 'expansion_panel_page.dart';
 import 'login_page.dart';
 import 'long_press_menu_page.dart';
+import 'lottery_page.dart';
 import 'wrap_page.dart';
 import 'dismissible_page.dart';
 import 'draggable_page.dart';
@@ -71,6 +72,7 @@ class MyApp extends StatelessWidget {
         'SpreadPage': (context) => SpreadPage(),
         'LoginPage': (context) => LoginPage(),
         'ToggleButtonsPage': (context) => ToggleButtonsPage(),
+        'LotteryPage': (context) => LotteryPage(),
       },
     );
   }
@@ -258,6 +260,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   navigateTo('ToggleButtonsPage');
                 },
                 child: Text('ToggleButtonsPage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('LotteryPage');
+                },
+                child: Text('LotteryPage'),
               ),
             ],
           ),),
