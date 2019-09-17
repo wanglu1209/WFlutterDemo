@@ -7,6 +7,7 @@ import 'package:wx_demo_project/spacer_page.dart';
 import 'package:wx_demo_project/spread_page.dart';
 import 'package:wx_demo_project/stepper_page.dart';
 import 'package:wx_demo_project/test_page.dart';
+import 'package:wx_demo_project/toggle_buttons_page.dart';
 import 'package:wx_demo_project/valuelistenablebuilder_page.dart';
 
 import 'HeroDetailPage.dart';
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
         'AnimationPage': (context) => AnimationPage(),
         'SpreadPage': (context) => SpreadPage(),
         'LoginPage': (context) => LoginPage(),
+        'ToggleButtonsPage': (context) => ToggleButtonsPage(),
       },
     );
   }
@@ -250,6 +252,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   navigateTo('LoginPage');
                 },
                 child: Text('LoginPage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('ToggleButtonsPage');
+                },
+                child: Text('ToggleButtonsPage'),
               ),
             ],
           ),),
