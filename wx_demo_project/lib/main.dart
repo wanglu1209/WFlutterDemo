@@ -6,6 +6,7 @@ import 'package:wx_demo_project/safe_area_page.dart';
 import 'package:wx_demo_project/spacer_page.dart';
 import 'package:wx_demo_project/spread_page.dart';
 import 'package:wx_demo_project/stepper_page.dart';
+import 'package:wx_demo_project/slide_list_page.dart';
 import 'package:wx_demo_project/test_page.dart';
 import 'package:wx_demo_project/toggle_buttons_page.dart';
 import 'package:wx_demo_project/valuelistenablebuilder_page.dart';
@@ -32,10 +33,11 @@ import 'hero_page.dart';
 
 void main() => runApp(MyApp());
 
+double screenWidth;
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -73,6 +75,7 @@ class MyApp extends StatelessWidget {
         'LoginPage': (context) => LoginPage(),
         'ToggleButtonsPage': (context) => ToggleButtonsPage(),
         'LotteryPage': (context) => LotteryPage(),
+        'SlideListPage': (context) => SlideListPage(),
       },
     );
   }
@@ -90,6 +93,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+
+    screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -266,6 +271,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   navigateTo('LotteryPage');
                 },
                 child: Text('LotteryPage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('SlideListPage');
+                },
+                child: Text('SlideListPage'),
               ),
             ],
           ),),
