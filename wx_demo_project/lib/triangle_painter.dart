@@ -29,8 +29,6 @@ class TrianglePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var path = Path();
 
-    print(position);
-    print(size.width);
     // 如果 menu 的长度 大于 child 的长度
     if (size.width > this.size.width) {
       // 靠右

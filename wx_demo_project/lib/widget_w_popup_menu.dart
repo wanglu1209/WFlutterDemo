@@ -544,13 +544,14 @@ class _PopupMenuRouteLayout extends SingleChildLayoutDelegate {
       } else {
         x = position.right - width / 2 - childSize.width / 2;
       }
-      if (y < _kMenuScreenPadding)
-        y = _kMenuScreenPadding;
-      else if (y + childSize.height > size.height - _kMenuScreenPadding)
-        y = size.height - childSize.height;
-      else if (y < childSize.height * 2) {
-        y = position.top + height;
-      }
+    }
+
+    if (y < _kMenuScreenPadding)
+      y = _kMenuScreenPadding;
+    else if (y + childSize.height > size.height - _kMenuScreenPadding)
+      y = size.height - childSize.height;
+    else if (y < childSize.height * 2) {
+      y = position.top + height;
     }
     return Offset(x, y);
   }
