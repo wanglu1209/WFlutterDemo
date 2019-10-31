@@ -9,9 +9,8 @@ class FutureBuilderPage extends StatefulWidget {
 
 class _FutureBuilderPageState extends State<FutureBuilderPage> {
   Dio _dio;
-  List<Stories> _newsData = [];
   int date = 20190523;
-  Future _future;
+  Future<List<Stories>> _future;
 
   @override
   void initState() {
@@ -20,19 +19,17 @@ class _FutureBuilderPageState extends State<FutureBuilderPage> {
     _future = getNewsList();
   }
 
-  Future getNewsList() async {
+  Future<List<Stories>> getNewsList() async {
     var response =
         await _dio.get('https://news-at.zhihu.com/api/4/news/before/$date');
-    setState(() {
-      _newsData.addAll(ZhiHuNews.fromJson(response.data)._stories);
-    });
+    return ZhiHuNews.fromJson(response.data)._stories;
   }
 
-  Widget generateListView() {
+  Widget generateListView(List<Stories> data) {
     return ListView.builder(
-      itemCount: _newsData.length,
+      itemCount: data.length,
       itemBuilder: (context, index) {
-        var indexData = _newsData[index];
+        var indexData = data[index];
         return Card(
           margin: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
           child: Padding(
@@ -66,7 +63,7 @@ class _FutureBuilderPageState extends State<FutureBuilderPage> {
       appBar: AppBar(
         title: Text('FutureBuilderPage'),
       ),
-      body: FutureBuilder(
+      body: FutureBuilder<List<Stories>>(
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -82,7 +79,7 @@ class _FutureBuilderPageState extends State<FutureBuilderPage> {
                 );
               }
 
-              return generateListView();
+              return generateListView(snapshot.data);
           }
           return null;
         },
