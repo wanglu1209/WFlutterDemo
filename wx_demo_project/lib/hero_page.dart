@@ -111,10 +111,7 @@ RTS RPG与SLG结合的创新玩法，精致写实的画风，逼真的军事装�
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              '${DateUtil.getDateStrByDateTime(
-                                DateTime.now(),
-                                format: DateFormat.ZH_MONTH_DAY,
-                              )} ${DateUtil.getZHWeekDay(DateTime.now())}',
+                              '${DateUtil.formatDate(DateTime.now(),)} ${DateUtil.getWeekday(DateTime.now())}',
                               style: TextStyle(
                                 fontSize: 12,
                                 decoration: TextDecoration.none,

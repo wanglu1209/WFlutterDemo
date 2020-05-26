@@ -32,7 +32,6 @@ class _SlideListPageState extends State<SlideListPage> {
                 ),
               ),
               color: Colors.grey,
-              height: 60,
             ),
             SlideMenuItem(
               onTap: () {
@@ -59,7 +58,6 @@ class _SlideListPageState extends State<SlideListPage> {
                 ),
               ),
               color: Colors.red,
-              height: 60,
             ),
           ],
           child: Container(

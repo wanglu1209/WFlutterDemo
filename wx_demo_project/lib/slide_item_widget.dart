@@ -87,6 +87,7 @@ class SlideItem extends StatelessWidget {
         },
         child: SizedBox(
           width: screenWidth,
+          height: height,
           child: child,
         ),
       ))

@@ -7,7 +7,7 @@ class TestPage extends StatefulWidget {
 
 double offset = 0;
 
-class _TestPageState extends State<TestPage> {
+class _TestPageState extends State<TestPage> with SingleTickerProviderStateMixin{
   PageController _controller = PageController();
 
   @override
@@ -25,20 +25,19 @@ class _TestPageState extends State<TestPage> {
       appBar: AppBar(
         title: Text('TestPage'),
       ),
-      body: SafeArea(
-        child: MediaQuery.removePadding(
-          context: context,
-          removeTop: true,
-          child: Center(
-            child: Container(
-              height: 100,
-              width: 100,
-              color: Colors.yellow,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            expandedHeight: 200,
+            flexibleSpace: Container(
+              child: Image.asset('images/bg.jpg', fit: BoxFit.fill,),
             ),
+            bottom: PreferredSize(
+                child: TabBar(tabs: [Tab(text: 'haha'), Tab(text: 'heihei')], controller: TabController( length: 2, vsync: this),),
+                preferredSize: Size.fromHeight(100)),
           ),
-        ),
+        ],
       ),
-
     );
   }
 }
