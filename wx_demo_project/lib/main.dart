@@ -24,6 +24,7 @@ import 'animation_page.dart';
 import 'aspect_ratio_page.dart';
 import 'back_drop_filter_page.dart';
 import 'banner_page.dart';
+import 'clip_image_page.dart';
 import 'constrained_box_page.dart';
 import 'drop_down_button_page.dart';
 import 'expansion_panel_page.dart';
@@ -90,6 +91,7 @@ class MyApp extends StatelessWidget {
         'MergeableMaterialPage': (context) => MergeableMaterialPage(),
         'AnimatedCrossFadePage': (context) => AnimatedCrossFadePage(),
         'GoodsListPage': (context) => GoodsListPage(),
+        'ClipImagePage': (context) => ClipImagePage(),
       },
     );
   }
@@ -333,6 +335,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   navigateTo('GoodsListPage');
                 },
                 child: Text('添加购物车效果'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('ClipImagePage');
+                },
+                child: Text('ClipImagePage'),
               ),
             ],
           ),),
