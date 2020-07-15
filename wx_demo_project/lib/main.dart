@@ -3,6 +3,8 @@ import 'package:wx_demo_project/popup_menu_button_page.dart';
 import 'package:wx_demo_project/popup_route_page.dart';
 import 'package:wx_demo_project/reorderable_list_view_page.dart';
 import 'package:wx_demo_project/safe_area_page.dart';
+import 'package:wx_demo_project/scroll_list_page.dart';
+import 'package:wx_demo_project/scroll_widget.dart';
 import 'package:wx_demo_project/shader_mask_page.dart';
 import 'package:wx_demo_project/spacer_page.dart';
 import 'package:wx_demo_project/spread_page.dart';
@@ -92,6 +94,8 @@ class MyApp extends StatelessWidget {
         'AnimatedCrossFadePage': (context) => AnimatedCrossFadePage(),
         'GoodsListPage': (context) => GoodsListPage(),
         'ClipImagePage': (context) => ClipImagePage(),
+        'ChildScrollWidget': (context) => ChildScrollWidget(),
+        'ScrollListPage': (context) => ScrollListPage(),
       },
     );
   }
@@ -341,6 +345,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   navigateTo('ClipImagePage');
                 },
                 child: Text('ClipImagePage'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('ChildScrollWidget');
+                },
+                child: Text('ChildScrollWidget'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  navigateTo('ScrollListPage');
+                },
+                child: Text('ScrollListPage'),
               ),
             ],
           ),),
